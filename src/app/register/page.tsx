@@ -1,5 +1,5 @@
 'use client'
-import Form from '@/(components)/Form'
+import Form from '@/app/(components)/Form'
 import Navbar from '@/common/Navbar'
 import { CountryCode } from '@/types/type'
 import { FC, useEffect, useState } from 'react'
@@ -17,8 +17,8 @@ const Register: FC = () => {
   return (
     <div className="relative">
       <Navbar />
-      <div className="grid grid-cols-2 h-screen w-screen bg-[url('/background/BG_EnterTextField.png')] bg-cover bg-center ">
-        <div className="flex flex-col justify-center mt-16 ml-40">
+      <div className="grid grid-cols-2 h-screen w-screen bg-[url('/background/BG_EnterTextField.png')] bg-cover bg-center p-40">
+        <div className="flex flex-col justify-center mt-16">
           <div className="text-[48px] font-semibold text-white font-poppins drop-shadow-xl leading-10">
             Enter Your
           </div>
@@ -29,7 +29,7 @@ const Register: FC = () => {
             Get A Special Deal
           </div>
         </div>
-        <div className="flex justify-between items-center max-w-[490px] my-16 mr-40">
+        <div className="flex justify-between items-center max-w-[490px] my-16">
           <Form data={data} />
         </div>
       </div>

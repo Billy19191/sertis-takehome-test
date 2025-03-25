@@ -1,7 +1,7 @@
 'use client'
 import { FC, useState, useRef, useEffect } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
-import { CountryCode } from '@/types/type'
+import { CountryCode, FormAttributes } from '@/types/type'
 import Icon from '@/common/Icon'
 import NextGreyButton from './NextGreyButton'
 import NextBlackButton from './NextBlackButton'
@@ -10,20 +10,12 @@ interface FormProps {
   data: CountryCode[]
 }
 
-interface FormValues {
-  firstname: string
-  lastname: string
-  email: string
-  countryCode: string
-  phone: string
-}
-
 const Form: FC<FormProps> = ({ data }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
 
   const { register, handleSubmit, watch, setValue, getValues } =
-    useForm<FormValues>({
+    useForm<FormAttributes>({
       defaultValues: {
         firstname: '',
         lastname: '',
@@ -51,11 +43,11 @@ const Form: FC<FormProps> = ({ data }) => {
 
   const formValues = watch()
 
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
+  const onSubmit: SubmitHandler<FormAttributes> = (data) => {
     console.log(data)
   }
 
-  const getInputClass = (id: keyof FormValues) => {
+  const getInputClass = (id: keyof FormAttributes) => {
     const baseClass = 'w-full h-10 border-b border-black outline-0'
     return formValues[id]
       ? `${baseClass} text-black`
@@ -195,9 +187,14 @@ const Form: FC<FormProps> = ({ data }) => {
           formValues.email !== '' &&
           formValues.phone !== '' &&
           formValues.countryCode !== '' ? (
-            <NextGreyButton />
+            <NextBlackButton
+              path={'/register/review'}
+              formData={formValues}
+              text="Next"
+              width={124}
+            />
           ) : (
-            <NextBlackButton />
+            <NextGreyButton text="Next" />
           )}
         </div>
       </form>

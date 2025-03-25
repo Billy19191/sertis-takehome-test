@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono, Poppins, Old_Standard_TT } from 'next/font/google'
 import './globals.css'
+import { FormStateContextProvider } from '@/provider/FormStateContext'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -36,11 +37,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} ${oldStandardTT.variable} antialiased`}
-      >
-        {children}
-      </body>
+      <FormStateContextProvider>
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} ${oldStandardTT.variable} antialiased`}
+        >
+          {children}
+        </body>
+      </FormStateContextProvider>
     </html>
   )
 }

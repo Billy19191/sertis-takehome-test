@@ -10,6 +10,9 @@ module.exports = {
         poppins: 'var(--font-poppins)',
         oldStandardTT: 'var(--font-old-standard-tt)',
       },
+      boxShadow: {
+        'primary-500': '0 0 10px 2px rgba(37, 205, 217, 0.5)', // Updated to match #25CDD9
+      },
       colors: {
         primary: {
           800: '#0F5257',
@@ -29,8 +32,6 @@ module.exports = {
           300: '#DDDFE4',
           200: '#F4F4F6',
         },
-        // black: '#000000',
-        // white: '#FFFFFF',
         error: '#FF5454',
         success: '#0DCA86',
       },

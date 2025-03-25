@@ -1,7 +1,8 @@
 'use client'
 import { FC, useState } from 'react'
-import Icon from '../common/Icon'
-import Navbar from '../common/Navbar'
+import Icon from '../../common/Icon'
+import Navbar from '../../common/Navbar'
+import Link from 'next/link'
 
 const HomePage: FC = () => {
   const [isWhiteIconHovered, setIsWhiteIconHovered] = useState<boolean>(false)
@@ -36,7 +37,9 @@ const HomePage: FC = () => {
                 isWhiteIconHovered ? 'opacity-100' : 'opacity-0'
               }`}
             >
-              <Icon path="/nextpage_blue.svg" size={72} />
+              <Link href="/register">
+                <Icon path="/nextpage_blue.svg" size={72} />
+              </Link>
             </div>
           </div>
         </div>

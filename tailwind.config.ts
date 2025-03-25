@@ -20,7 +20,7 @@ module.exports = {
           300: '#B9EFF3',
           200: '#E5F9FB',
         },
-        grey: {
+        'grey-sertis': {
           800: '#1B1D22',
           700: '#3A3F4A',
           600: '#515866',

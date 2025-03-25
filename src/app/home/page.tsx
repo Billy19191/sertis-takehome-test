@@ -1,39 +1,43 @@
 'use client'
-import { useState } from 'react'
+import { FC, useState } from 'react'
 import Icon from '../common/Icon'
+import Navbar from '../common/Navbar'
 
-const HomePage = () => {
+const HomePage: FC = () => {
   const [isWhiteIconHovered, setIsWhiteIconHovered] = useState<boolean>(false)
   return (
-    <div className="flex flex-col justify-center items-center h-screen w-screen bg-[url('/background/BG_Welcome.png')] bg-cover bg-center gap-2">
-      <div className="text-[40px] font-semibold text-white font-poppins">
-        We have
-      </div>
-      <div className="text-[88px] font-semibold text-white font-poppins">
-        A Special Deal
-      </div>
-      <div className="text-[72px] font-normal text-white font-old-standard-tT italic">
-        For you
-      </div>
-      <div
-        onMouseEnter={() => setIsWhiteIconHovered(true)}
-        onMouseLeave={() => setIsWhiteIconHovered(false)}
-        className="transition-transform duration-300 hover:scale-150"
-      >
-        <div className="relative">
-          <div
-            className={`transition-opacity duration-300 ${
-              isWhiteIconHovered ? 'opacity-0' : 'opacity-100'
-            }`}
-          >
-            <Icon path="/nextpage_white.svg" size={48} />
-          </div>
-          <div
-            className={`absolute top-0 left-0 transition-opacity duration-300 ${
-              isWhiteIconHovered ? 'opacity-100' : 'opacity-0'
-            }`}
-          >
-            <Icon path="/nextpage_blue.svg" size={72} />
+    <div className="relative">
+      <Navbar />
+      <div className="flex flex-col justify-center items-center h-screen w-screen bg-[url('/background/BG_Welcome.png')] bg-cover bg-center">
+        <div className="text-[48px] font-semibold text-white font-poppins drop-shadow-xl leading-6">
+          We Have
+        </div>
+        <div className="text-[88px] font-semibold text-white font-poppins drop-shadow-2xl leading-36">
+          A Special Deal
+        </div>
+        <div className="text-[80px] font-normal text-white font-old-standard-tT italic drop-shadow-2xl leading-14">
+          For You
+        </div>
+        <div
+          onMouseEnter={() => setIsWhiteIconHovered(true)}
+          onMouseLeave={() => setIsWhiteIconHovered(false)}
+          className="mt-16 transition-transform duration-300 hover:scale-150"
+        >
+          <div className="relative">
+            <div
+              className={`transition-opacity duration-300 ease-linear ${
+                isWhiteIconHovered ? 'opacity-0' : 'opacity-100'
+              }`}
+            >
+              <Icon path="/nextpage_white.svg" size={48} />
+            </div>
+            <div
+              className={`absolute top-0 left-0 transition-opacity duration-300 ease-linear ${
+                isWhiteIconHovered ? 'opacity-100' : 'opacity-0'
+              }`}
+            >
+              <Icon path="/nextpage_blue.svg" size={72} />
+            </div>
           </div>
         </div>
       </div>

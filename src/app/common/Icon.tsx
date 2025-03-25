@@ -9,18 +9,7 @@ interface IconProps {
 const Icon: React.FC<IconProps> = ({ path = '', size = 24 }) => {
   return (
     <div>
-      {path && (
-        <Image
-          src={path}
-          alt="icon"
-          width={size}
-          height={size}
-          style={{
-            objectFit: 'contain',
-            filter: 'invert(1)',
-          }}
-        />
-      )}
+      {path && <Image src={path} alt="icon" width={size} height={size} />}
     </div>
   )
 }

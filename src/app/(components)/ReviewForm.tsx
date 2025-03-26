@@ -32,7 +32,7 @@ const ReviewForm = () => {
                 isWhiteIconHovered ? 'opacity-100' : 'opacity-0'
               } `}
             >
-              <Link href="/register">
+              <Link href="/register/edit">
                 <div className="flex justify-center  items-center bg-primary-500 hover:shadow-primary-500 rounded-full w-8 h-8 ">
                   <Icon path="/icon/pen_edit_white.svg" size={12} />
                 </div>

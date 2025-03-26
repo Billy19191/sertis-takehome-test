@@ -16,16 +16,23 @@ const EditForm: FC<FormProps> = ({ data }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
   const { formValues: previousValue } = useFormData()
-  const { register, handleSubmit, watch, setValue, getValues } =
-    useForm<FormAttributes>({
-      defaultValues: {
-        firstname: '',
-        lastname: '',
-        email: '',
-        countryCode: '+66',
-        phone: '',
-      },
-    })
+  const {
+    register,
+    handleSubmit,
+    watch,
+    setValue,
+    getValues,
+    formState: { errors },
+  } = useForm<FormAttributes>({
+    mode: 'onChange',
+    defaultValues: {
+      firstname: '',
+      lastname: '',
+      email: '',
+      countryCode: '+66',
+      phone: '',
+    },
+  })
 
   useEffect(() => {
     setValue('firstname', previousValue.firstname)
@@ -79,8 +86,20 @@ const EditForm: FC<FormProps> = ({ data }) => {
             id="firstname"
             placeholder="Enter first name"
             className={getInputClass('firstname')}
-            {...register('firstname', { required: true })}
+            {...register('firstname', {
+              required: true,
+              pattern: {
+                value: /^[A-Za-z\s]+$/,
+                message:
+                  'This field can only contain alphabets (A-z) and space.',
+              },
+            })}
           />
+          {errors.firstname && (
+            <p className="text-error text-xs mt-1">
+              {errors.firstname.message}
+            </p>
+          )}
         </div>
 
         <div className="pb-8">
@@ -91,8 +110,18 @@ const EditForm: FC<FormProps> = ({ data }) => {
             id="lastname"
             placeholder="Enter last name"
             className={getInputClass('lastname')}
-            {...register('lastname', { required: true })}
+            {...register('lastname', {
+              required: true,
+              pattern: {
+                value: /^[A-Za-z\s]+$/,
+                message:
+                  'This field can only contain alphabets (A-z) and space.',
+              },
+            })}
           />
+          {errors.lastname && (
+            <p className="text-error text-xs mt-1">{errors.lastname.message}</p>
+          )}
         </div>
 
         <div className="pb-8">
@@ -106,11 +135,15 @@ const EditForm: FC<FormProps> = ({ data }) => {
             {...register('email', {
               required: true,
               pattern: {
-                value: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/,
-                message: 'Please enter a valid email',
+                value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                message:
+                  'This field has invalid email format (example@email.com).',
               },
             })}
           />
+          {errors.email && (
+            <p className="text-error text-xs mt-1">{errors.email.message}</p>
+          )}
         </div>
 
         <div className="flex pb-8 gap-x-4 w-full">
@@ -184,11 +217,18 @@ const EditForm: FC<FormProps> = ({ data }) => {
               {...register('phone', {
                 required: true,
                 pattern: {
-                  value: /^[0-9]{9,10}$/,
-                  message: 'Phone number should be 9-10 digits',
+                  value: /^[0-9]+$/,
+                  message: 'Phone number should contain only digits',
+                },
+                maxLength: {
+                  value: 16,
+                  message: 'The phone number is too long.',
                 },
               })}
             />
+            {errors.phone && (
+              <p className="text-error text-xs mt-1">{errors.phone.message}</p>
+            )}
           </div>
         </div>
 
@@ -197,7 +237,8 @@ const EditForm: FC<FormProps> = ({ data }) => {
             <CancleButton />
           </div>
           <div>
-            {JSON.stringify(formValues) !== JSON.stringify(previousValue) ? (
+            {Object.keys(errors).length === 0 &&
+            JSON.stringify(formValues) !== JSON.stringify(previousValue) ? (
               <SaveBlackButton
                 path={'/register/review'}
                 formData={formValues}

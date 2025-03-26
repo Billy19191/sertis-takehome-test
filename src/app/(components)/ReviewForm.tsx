@@ -25,7 +25,9 @@ const ReviewForm = () => {
                 isWhiteIconHovered ? 'opacity-0' : 'opacity-100'
               }`}
             >
-              <Icon path="/icon/edit.svg" size={32} />
+              <Link href="/register/edit">
+                <Icon path="/icon/edit.svg" size={32} />
+              </Link>
             </div>
             <div
               className={`absolute top-0 left-0 transition-opacity duration-300 ease-linear ${

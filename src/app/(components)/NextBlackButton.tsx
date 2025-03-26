@@ -30,13 +30,18 @@ const NextBlackButton = ({
             isWhiteIconHovered ? 'opacity-0' : 'opacity-100'
           }`}
         ></div>
-        <button
+        <Link
+          href={path}
+          onClick={() => {
+            setIsHaveData(true)
+            setFormValues(formData)
+          }}
           className={`flex justify-center items-center h-12 border text-grey-sertis-800 border-grey-sertis-800 rounded-full gap-2.5 font-semibold text-lg`}
           style={{ width: width + 'px' }}
         >
           <span>{text}</span>
           <Icon path="/icon/next_black.svg" size={17} />
-        </button>
+        </Link>
       </div>
 
       <div

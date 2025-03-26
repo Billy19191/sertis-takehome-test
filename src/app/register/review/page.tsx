@@ -2,13 +2,18 @@
 import ReviewForm from '@/app/(components)/ReviewForm'
 import Navbar from '@/common/Navbar'
 import { useForm } from '@/provider/FormStateContext'
-// import { FormAttributes } from '@/types/type'
+import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
 
 const ReviewPage = () => {
+  const router = useRouter()
   const { isHaveData } = useForm()
-  if (!isHaveData) {
-    window.location.href = '/home'
-  }
+
+  useEffect(() => {
+    if (!isHaveData) {
+      router.push('/home')
+    }
+  }, [isHaveData, router])
   return (
     <div className="relative">
       <Navbar />

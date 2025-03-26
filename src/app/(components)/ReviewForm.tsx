@@ -74,7 +74,7 @@ const ReviewForm = () => {
           formValues.phone !== '' &&
           formValues.countryCode !== '' ? (
             <NextBlackButton
-              path={'/register/review'}
+              path={'/register/success'}
               formData={formValues}
               text="Confirm"
               width={154}

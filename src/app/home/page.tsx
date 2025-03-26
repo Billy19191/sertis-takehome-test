@@ -1,11 +1,8 @@
-'use client'
-import { FC, useState } from 'react'
-import Icon from '../../common/Icon'
+import { FC } from 'react'
 import Navbar from '../../common/Navbar'
-import Link from 'next/link'
+import NavigateButton from '../(components)/NavigateButton'
 
 const HomePage: FC = () => {
-  const [isWhiteIconHovered, setIsWhiteIconHovered] = useState<boolean>(false)
   return (
     <div className="relative">
       <Navbar />
@@ -19,7 +16,7 @@ const HomePage: FC = () => {
         <div className="text-[80px] font-normal text-white font-old-standard-tT italic drop-shadow-2xl leading-14">
           For You
         </div>
-        <div
+        {/* <div
           onMouseEnter={() => setIsWhiteIconHovered(true)}
           onMouseLeave={() => setIsWhiteIconHovered(false)}
           className="mt-16 transition-transform duration-300 hover:scale-150"
@@ -42,6 +39,9 @@ const HomePage: FC = () => {
               </Link>
             </div>
           </div>
+        </div> */}
+        <div className="mt-16">
+          <NavigateButton path="/register" />
         </div>
       </div>
     </div>
